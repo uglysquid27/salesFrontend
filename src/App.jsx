@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css';
 import Login from './login/login.jsx'
+import Side from './layout/sidebar.jsx'
 import { getPakets } from '../service/apiService';
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
     <>
    <div className=''>
    <BrowserRouter>
+   <Side />
     <Login />
+    
       {/* <Nav />
       <div className='hidden lg:block'>
       <Side />
