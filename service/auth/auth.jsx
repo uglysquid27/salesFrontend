@@ -13,5 +13,4 @@ const logout = async () => {
   window.location.reload();
 }
 
-
 export { login, logout };

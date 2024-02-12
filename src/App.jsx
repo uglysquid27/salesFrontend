@@ -5,27 +5,14 @@ import viteLogo from '/vite.svg'
 import './App.css';
 import Login from '../pages/login/login.jsx'
 import Dashboard from '../pages/dashboard/dashboard.jsx'
+import Paket from '../pages/paket/index.jsx'
 import Main from '../pages/layout/main.jsx'
-import { getPakets } from '../service/apiService';
 import ProtectedRoute from "../helper/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0)
 
   const [pakets, setPakets] = useState(null);
-
-  useEffect(() => {
-    const fetchPakets = async () => {
-      try {
-        const data = await getPakets();
-        setPakets(data);
-      } catch (error) {
-        console.error('Error fetching pakets:', error);
-      }
-    };
-
-    fetchPakets();
-  }, []);
 
   return (
     <>
@@ -40,6 +27,17 @@ function App() {
               element={
                 <Main>
                   <Dashboard />
+                </Main>
+              }
+            />
+
+          </Route>
+          <Route path="/paket" element={<ProtectedRoute />}>
+            <Route
+              path=""
+              element={
+                <Main>
+                  <Paket />
                 </Main>
               }
             />

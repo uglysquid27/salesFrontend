@@ -37,18 +37,18 @@ function navbar() {
   })
   return (
     <>
-      <div className="z-10 fixed navbar lg:py-4 lg:px-24 bg-gray-100">
+      <div className="z-10 fixed navbar lg:py-4 lg:px-24 bg-gray-100 border border-gray-400">
         <div className="lg:navbar-start max-lg:hidden">
           <Link to="/" className="text-center column-1">
             <div className="bg-blend-difference logo w-full font-bold text-md text-gray-900" data-aos="fade-right" data-aos-delay="0">
-              AHMAD FARREL
+            SALESVUE
             </div>
             <div className="text-xs font-semibold text-gray-800" data-aos="fade-right" data-aos-delay="200">
-              WEB DEVELOPER
+              Dashboard
             </div>
           </Link>
         </div>
-        <div className="navbar-start">
+        {/* <div className="navbar-start">
           <div onClick={handleDropdown} className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -126,7 +126,7 @@ function navbar() {
           <ScrollLink to="contact" smooth={true} duration={500} className="text-link font-medium mx-1.5 sm:mx-6" data-aos="fade-down" data-aos-delay="500" style={{ cursor: "pointer" }} >
             05.Contact
           </ScrollLink>
-        </div>
+        </div> */}
       </div>
     </>
   );

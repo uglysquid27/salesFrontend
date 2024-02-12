@@ -1,9 +1,13 @@
 import React from 'react'
 
 const Dashboard = () => {
+    
   return (
     <>
-        <h1>Dashboard</h1>
+    <div className='bg-white w-screen h-screen'>
+    <h1>Dashboard</h1>
+    </div>
+        
     </>
   )
 }
