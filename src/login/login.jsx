@@ -1,8 +1,45 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
 import bg from '../assets/login.jpg'
+import { useNavigate } from "react-router-dom";
+import { login } from "../../service/auth/auth";
+import Swal from "sweetalert2";
 
 function App() {
+
+  const navigate = useNavigate();
+  const [nip, setNip] = useState("");
+  const [password, setPassword] = useState("");
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const data = { nip, password };
+        console.log(nip)
+        console.log(password)
+        console.log(data)
+        login(data).then((response) => {
+            console.log(response);
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("role", response.data.role_id);
+
+            navigate("/");
+        
+            Swal.fire({
+                icon: "success",
+                title: "Login Success",
+                text: "You are logged in!",
+              });
+        })
+        .catch((error) => {
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Login Failed",
+                text: "Username or password is incorrect!",
+              });
+        });
+    }
 
   return (
 
@@ -70,30 +107,35 @@ function App() {
 
             <form action="#" className="mt-8 flex flex-wrap gap-6">
               <div className="w-full">
-                <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label htmlFor="nip" className="block text-sm font-medium text-gray-700">Email</label>
                 <input
-                  type="email"
-                  id="Email"
-                  name="email"
-                  className="py-3 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-lg"
-                />
+                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      id="nip"
+                      type="text"
+                      placeholder="Put NIP Here"
+                      value={nip}
+                      onChange={(e) => setNip(e.target.value)}
+                    />
               </div>
               <div className="w-full">
                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700">Password</label>
                 <input
-                  type="password"
-                  id="Password"
-                  name="password"
-                  className="py-3 w-full rounded-md border border-gray-200 bg-white text-sm text-gray-700 shadow-lg"
+                      className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      id="password"
+                      type="password"
+                      placeholder="******************"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="w-full flex justify-center">
-                <button
-                  type="submit"
-                  className="inline-block rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                >
-                  Login
-                </button>
+              <button
+                      className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                      type="button"
+                        onClick={handleSignIn}
+                    >
+                      Sign In
+                    </button>
               </div>
             </form>
 
