@@ -30,8 +30,8 @@ function App() {
     <>
    <div className=''>
    <BrowserRouter>
-   <Nav />
-   <Side />
+   {/* <Nav />
+   <Side /> */}
     <Login />
     
       {/* <Nav />
