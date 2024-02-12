@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css';
-import Login from './login/login.jsx'
-import Side from './layout/sidebar.jsx'
-import Nav from './layout/navbar.jsx'
+import Login from '../pages/login/login.jsx'
+import Dashboard from '../pages/dashboard/dashboard.jsx'
+import Main from '../pages/layout/main.jsx'
 import { getPakets } from '../service/apiService';
+import ProtectedRoute from "../helper/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,26 +31,22 @@ function App() {
     <>
    <div className=''>
    <BrowserRouter>
-   {/* <Nav />
-   <Side /> */}
-    <Login />
-    
-      {/* <Nav />
-      <div className='hidden lg:block'>
-      <Side />
-      <RightSide />
-      </div>
-      
-      <div className='lg:px-36'>
         <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Login />} />
+    
+          <Route path="/dashboard" element={<ProtectedRoute />}>
+            <Route
+              path=""
+              element={
+                <Main>
+                  <Dashboard />
+                </Main>
+              }
+            />
+
+          </Route>
         </Routes>
-      </div>
-      <Footer /> */}
-    </BrowserRouter>
+      </BrowserRouter>
 </div>
     
   </>

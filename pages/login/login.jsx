@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import '../App.css'
-import bg from '../assets/login.jpg'
+// import '../../App.css'
+import bg from '../../src/assets/login.jpg'
 import { useNavigate } from "react-router-dom";
 import { login } from "../../service/auth/auth";
 import Swal from "sweetalert2";
@@ -26,9 +26,9 @@ function App() {
       console.log(response);
       localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify(response.data));
-      localStorage.setItem("role", response.data.role_id);
+      localStorage.setItem("level", response.data.user_level);
 
-      navigate("/");
+      navigate("/dashboard");
 
       Swal.fire({
         icon: "success",

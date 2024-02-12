@@ -10,7 +10,6 @@ const login = async (data) => {
 
 const logout = async () => {
   localStorage.removeItem('token');
-
   window.location.reload();
 }
 
